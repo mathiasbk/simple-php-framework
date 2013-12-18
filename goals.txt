@@ -1,0 +1,11 @@
+Mål
+
+	- Lett å sette opp ny side
+	
+	
+funksjoner
+	- Adminpanel
+	- login
+	- dynamisk meny
+	- Bruker kontroll
+	- Permission system
