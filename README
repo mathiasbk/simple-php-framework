@@ -1,7 +1,7 @@
-Tables.
 
+Some of the rows in the usertable is static for now. Working on making it dynamic somehow.
 
-Tables to use:
+Userrows to use:
 users
 	- password 		//to edit: $users->Createusers, $users->Login
 	- email			//to edit: $users->Createusers,
