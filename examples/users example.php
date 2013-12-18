@@ -46,7 +46,6 @@ echo $users->CreateUser($userconf);
 						[0] = successfully logged in
 						[1] = Not successfull
 *****************************************************************************/
-var_dump($_SESSION);
 
 //echo $users->Login("Mathias", "hemmelig")[1];
 
