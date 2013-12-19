@@ -12,6 +12,7 @@ User:
 	- Create user
 	- Delete user
 	- Edit user
+	- ListUsers
 	
 
 ----

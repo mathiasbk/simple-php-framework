@@ -154,8 +154,7 @@ class users
 		}
 		//END: Checks if the strings are accepted
 		
-		
-		
+
 		//START: Encrypts the password
 		foreach($userconfig as &$value)
 		{
@@ -175,7 +174,6 @@ class users
 		//Creats a single string from the array
 		$tmpcolum = array(); //Temp array which stores the colum to insert it into
 		$tmpvalue = array(); //Temp array whitch stores the values
-		$teststring = "";
 		$firstloop = true;
 		foreach($userconfig as $userconfigs){
 			$tmpcolum[] = $userconfigs[0];
@@ -205,6 +203,24 @@ class users
 		$DeleteQuery = "DELETE FROM ".$this->UserTable ." WHERE ID=$id";
 		if(!mysql_query($DeleteQuery)) die('Error: ' . mysql_error());
 		return "User deleted!";
+	}
+	
+	public function ListUsers($OrderBy, $SortOrder)
+	{
+		if($OrderBy == NULL) $OrderBy = "ID";
+		if($SortOrder != "DESC" OR $SortOrder != "ASC") $SortOrder = "DESC";
+		
+		$ListUserSQL = "SELECT * FROM ".$this->UserTable." ORDER BY $OrderBy $SortOrder";
+		$result = mysql_query($ListUserSQL);
+		$UsersArray = array();
+		
+		while($list = mysql_fetch_assoc($result))
+		{
+			$UsersArray[] = $list;
+		}
+		
+		return $UsersArray;
+		
 	}
 	
 }

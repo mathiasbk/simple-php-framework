@@ -59,9 +59,22 @@ echo $users->CreateUser($userconf);
 						[0] = successfully logged in
 						[1] = Not successfull
 *****************************************************************************/
+/*
 $userconf = array( 	array("username", "Mathias"),
 					array("email", "mathias@test.no"),
 					array("password", "hemmelig"));
 echo $users->EditUser($userconf, 2)[1];
+*/
+
+
+/*****************************************************************************
+/*  Function:    EditUser($id, $userarray)
+/*  Description: Edits the user in mysql
+/*  Inputs:      $OrderBy, $SortOrder
+					$Orderby Example. "ID"
+					$SortOrder can have "DESC" or "ASC".
+/*  Outputs:     Twodimensional array with userdata
+*****************************************************************************/
+var_dump($users->ListUsers("ID", "DESC"));
 
 ?>
