@@ -4,8 +4,8 @@ Mål
 	
 	
 funksjoner
-	- Adminpanel
-	- login
-	- dynamisk meny
-	- Bruker kontroll
+	- Adminpanel				Done: 	18.12.2013
+	- login						Done: 	17.12.2013
+	- dynamisk meny				
+	- Bruker kontroll			Done 	18.12.2013
 	- Permission system
