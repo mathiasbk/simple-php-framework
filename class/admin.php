@@ -23,7 +23,7 @@ class users
 		$Security = new Security();
 		if(isset($_SESSION['login']))
 		{
-			return array("1", "Already logged in");
+			return array(false, "Already logged in");
 		}
 		
 		$username =$Security->String_verify($username);
@@ -36,10 +36,10 @@ class users
 		{
 			$_SESSION['login'] = md5('ok');
 			$_SESSION['userinfo'] = mysql_fetch_array($result);
-			return array("0", "Login successfully");
+			return array(true, "Login successfully");
 		}
 		
-		return array("1", "unknown error");
+		return array(false, "Wrong Username or password");
 	}
 	
 	public function LogOut()
@@ -74,7 +74,7 @@ class users
 		//START: Checks if the strings are accepted
 		if(!$Security->Validate_Array($userconfig))
 		{
-			return("A field was empty!");
+			return array(false, "A field was empty!");
 		}
 		//END: Checks if the strings are accepted
 		
@@ -102,13 +102,13 @@ class users
 		$UserQueryResult = mysql_query($userquery) or die(mysql_error());
 		if(mysql_num_rows($UserQueryResult) != 0)
 		{
-			Return "Username already exist!"; 
+			Return array(false, "Username already exist!"); 
 		}
 		$Mailquery = "SELECT * FROM ".$this->UserTable." WHERE email='$email'";
 		$MailQueryResult = mysql_query($Mailquery) or die(mysql_error());
 		if(mysql_num_rows($MailQueryResult) != 0)
 		{
-			Return "Email already exist!"; 
+			Return array(false, "Email already exist!"); 
 		}
 		
 		
@@ -128,7 +128,7 @@ class users
 		$sql = ("INSERT INTO users ($Formatted_output_Colum) VALUES ($Formatted_output_Value)");
 		if(!mysql_query($sql)) die('Error: ' . mysql_error());	//checks if the creation of a new user was successfull.
 		
-		return "<br>Successfully created user!";
+		return array(true, "<br>Successfully created user!");
 	}
 	
 	public function EditUser($userconfig, $id)
@@ -150,7 +150,7 @@ class users
 		//START: Checks if the strings are accepted
 		if(!$Security->Validate_Array($userconfig))
 		{
-			return array(1, "A field was empty!");
+			return array(false, "A field was empty!");
 		}
 		//END: Checks if the strings are accepted
 		
@@ -174,6 +174,7 @@ class users
 		//Creats a single string from the array
 		$tmpcolum = array(); //Temp array which stores the colum to insert it into
 		$tmpvalue = array(); //Temp array whitch stores the values
+		$teststring = "";
 		$firstloop = true;
 		foreach($userconfig as $userconfigs){
 			$tmpcolum[] = $userconfigs[0];
@@ -188,7 +189,7 @@ class users
 		$sql = ("UPDATE ".$this->UserTable." SET ".$teststring . " WHERE ID=".$id);
 		if(!mysql_query($sql)) die('Error: ' . mysql_error());	//checks if the creation of a new user was successfull.
 		
-		return array(0, "<br>Updated the user!");
+		return array(true, "<br>Updated the user!");
 	}
 	
 	public function DeleteUser($id)
@@ -201,8 +202,8 @@ class users
 		*****************************************************************************/
 
 		$DeleteQuery = "DELETE FROM ".$this->UserTable ." WHERE ID=$id";
-		if(!mysql_query($DeleteQuery)) die('Error: ' . mysql_error());
-		return "User deleted!";
+		if(!mysql_query($DeleteQuery)) return array(false, mysql_error());
+		return array(true, "User deleted!");
 	}
 	
 	public function ListUsers($OrderBy, $SortOrder)
