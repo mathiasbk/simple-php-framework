@@ -13,6 +13,6 @@ $Security = new Security;
 *****************************************************************************/
 
 $string = "Not encrypted";
-echo "String before: \"" . $string ."\" <br> After: " . $Security->Encryptstring($string);
+echo "String before: \"" . $string ."\" <br> After: " . $Security->Hash_string($string);
 
 ?>

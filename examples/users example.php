@@ -114,7 +114,7 @@ var_dump($UsersArray);
 
 
 
-function spacer($action)
+function spacer($action) //just a function to seperate each action done by this example file.
 {
 	echo "<br><br> -------------------------  $action   ------------------------------------- <br><br>";
 }

@@ -53,7 +53,7 @@ class Security
 		return mysql_real_escape_string($string);
 	}
 	
-	public function EncryptString($string)
+	public function Hash_String($string)
 	{
 		return sha1(md5(sha1($string)));
 	}

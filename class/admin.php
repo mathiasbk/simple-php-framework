@@ -27,7 +27,7 @@ class users
 		}
 		
 		$username =$Security->String_verify($username);
-		$password = $Security->String_verify($Security->EncryptString($password));
+		$password = $Security->String_verify($Security->Hash_String($password));
 		$Login_sql = "SELECT * FROM ".$this->UserTable." WHERE username='$username' and password='$password'";
 		
 		$result = mysql_query($Login_sql);
@@ -86,7 +86,7 @@ class users
 			if($value[0] == "password")
 			{
 				
-				$value[1] = $Security->EncryptString($value[1]);	//calls a security function to encrypt password
+				$value[1] = $Security->Hash_String($value[1]);	//calls a security function to encrypt password
 				$password = $value[1];
 			}
 			if($value[0] == "username") $username = $value[1];
@@ -161,7 +161,7 @@ class users
 			if($value[0] == "password")
 			{
 				
-				$value[1] = $Security->EncryptString($value[1]);	//calls a security function to encrypt password
+				$value[1] = $Security->Hash_String($value[1]);	//calls a security function to encrypt password
 				$password = $value[1];
 			}
 			if($value[0] == "username") $username = $value[1];
